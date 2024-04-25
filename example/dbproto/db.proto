@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "dbproto";
+
+message User {
+			uint64 uid = 1;
+			string name = 2;
+}
+
+message Item {
+				uint32 item_id = 1;
+				uint32 typ = 2;
+				uint64 uid = 3;
+}
+
+message Order {
+				string order_id = 1;
+				uint64 uid = 2;
+				string ext_data = 3;
+}

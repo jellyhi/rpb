@@ -47,6 +47,17 @@ func Appenduint32Args(ss []string, vv []uint32) []interface{} {
 	return result
 }
 
+func AppendstringArgs(ss []string, vv []string) []interface{} {
+	result := make([]interface{}, 0, len(ss)+len(vv))
+	for _, s := range ss {
+		result = append(result, s)
+	}
+	for _, v := range vv {
+		result = append(result, v)
+	}
+	return result
+}
+
 func U64ToU32s(vv []uint64) []uint32 {
 	result := make([]uint32, len(vv))
 	for i, v := range vv {
@@ -60,4 +71,16 @@ func Ifb(ok, okret, failret bool) bool {
 		return okret
 	}
 	return failret
+}
+
+func uniqueStringSlice(ss []string) []string {
+	result := make([]string, 0, len(ss))
+	m := make(map[string]struct{}, len(ss))
+	for _, s := range ss {
+		if _, exist := m[s]; !exist {
+			result = append(result, s)
+			m[s] = struct{}{}
+		}
+	}
+	return result
 }

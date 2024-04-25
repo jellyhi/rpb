@@ -245,6 +245,7 @@ func RegisterHash(keyName string, prefixTyp PrefixType, message proto.Message) {
 func GenerateCode(keyNamespace, pkg string, writer io.Writer) {
 	headerParam.Pkg = pkg
 	headerParam.KeyMetaNamespace = keyNamespace
+	headerParam.Imports = uniqueStringSlice(headerParam.Imports)
 	tpl := template.Must(template.New("header").Parse(headerTpl))
 	tpl.Execute(writer, headerParam)
 
